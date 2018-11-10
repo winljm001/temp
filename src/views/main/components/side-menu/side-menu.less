@@ -1,0 +1,43 @@
+.side-menu-wrapper{
+  .cp-side-menu{
+    background-color:transparent;
+    &.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened{
+      background-color:transparent;
+    }
+    &.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title{
+      background-color: rgba(255,255,255,0.05)
+    }
+    &.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover, &.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title:hover{
+      
+      background-color: rgba(255,255,255,0.05)
+    }
+    .ivu-menu{
+      background-color: #353f43;
+    }
+    &.ivu-menu-vertical .ivu-menu-item{
+      height: 60px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding: 0px;
+      font-size: 16px;
+    }
+    &.ivu-menu-vertical .ivu-menu-submenu-title{
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      height: 90px;
+      padding: 0 10px 0 16px;
+      font-size: 18px;
+    }
+    &.ivu-menu-vertical .ivu-menu-submenu-title-icon{
+      top:38px;
+      position: absolute;
+      right: 10px;
+    }
+    &.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu), &.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu){
+      background-color: #f08300;
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "vue-temp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "cross-env NODE_ENV=development vue-cli-service serve --build-type dev --build-env local --fix --open",
+    "test": "vue-cli-service build --build-type test --build-env local --report",
+    "test2": "vue-cli-service build --build-type test --build-env ali --report",
+    "prod": "vue-cli-service build --build-type production --build-env prod",
+    "lint": "vue-cli-service lint --fix"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "iview": "^3.1.0-rc.2",
+    "qs": "^6.5.2",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0",
+    "@vue/cli-plugin-eslint": "^3.0.0",
+    "@vue/cli-service": "^3.0.0",
+    "@vue/eslint-config-prettier": "^3.0.1",
+    "babel-plugin-import": "^1.8.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.4.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-vue": "4.7.1",
+    "husky": "^1.0.0-rc.13",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "lint-staged": "^7.2.2",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
