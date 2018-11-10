@@ -8,10 +8,10 @@
       :active-name="activeName">
       <MenuItem 
         v-for="v in mainMenuList" 
-        :key="v.menuCode" 
-        :name="v.menuCode"
+        :key="v.name" 
+        :name="v.name"
         class="main-menu-item">
-      {{ v.menuName }}
+      {{ v.meta.title }}
       </MenuItem>
     </Menu>
   </div>

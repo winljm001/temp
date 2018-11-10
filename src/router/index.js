@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './routers'
+import otherRouters from './otherRouters'
+import Store from '@/store/index.js'
 import { getAuthorization } from '../utils/storage'
 import { updateAllRouter } from '../utils/util'
 // 主菜单模拟数据
@@ -25,13 +27,10 @@ router.beforeEach((to, from, next) => {
     next({
       name: LOGIN_PAGE_NAME
     })
-  } else if (auth && to.name === LOGIN_PAGE_NAME) {
-    next({
-      name: 'home'
-    })
   } else {
     if (!getRouter) {
-      getRouter = updateAllRouter(mainMenus, subMenus)
+      getRouter = [...updateAllRouter(mainMenus, subMenus), ...otherRouters]
+      Store.commit('setAllRouter', { payload: getRouter })
       router.addRoutes(getRouter)
       next({ ...to, replace: true })
     } else {

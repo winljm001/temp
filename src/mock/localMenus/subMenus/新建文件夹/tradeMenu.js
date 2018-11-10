@@ -1,23 +1,23 @@
 const childrenMenu = {
   children: [
     {
-      upMenuCode: '10060000',
+      upMenuCode: '10030000',
       children: [],
       menuIcon: 'paper-clip',
-      menuUrl: '/account_center/menu1-1',
-      menuCode: '10060100',
+      menuUrl: '/trade/menu1-1',
+      menuCode: '10030100',
       menuLevel: 2,
       menuName: '活动方案',
       menuScope: 'operate',
-      component: 'account-center/menu1/menu1-1/Index'
+      component: 'trade/menu1/menu1-1'
     }
   ],
-  menuCode: '10060000',
+  menuCode: '10030000',
   menuIcon: 'paper-clip',
-  menuUrl: '/account_center',
+  menuUrl: '/trade',
   menuLevel: 1,
-  menuName: '用户中心',
+  menuName: '交易',
   menuScope: 'operate',
-  component: 'main/Index'
+  component: 'main/main'
 }
 export default childrenMenu

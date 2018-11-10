@@ -1,2 +1,2 @@
-import Index from './Index.vue'
-export default Index
+import headerBar from './header-bar.vue'
+export default headerBar

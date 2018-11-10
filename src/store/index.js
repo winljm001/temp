@@ -5,8 +5,8 @@ import modules from './modules'
 import {
   getAuthorization,
   getUserInfo,
-  setMainMenuList,
-  getMainMenuList
+  setMainMenuList
+  // getMainMenuList
 } from '../utils/storage'
 import { getMainMenuByRouter } from '../utils/util'
 // 主菜单模拟数据
@@ -23,10 +23,11 @@ export default new Vuex.Store({
     authorization: getAuthorization(),
     userInfo: getUserInfo(),
     // 菜单相关
-    mainMenuList: getMainMenuList(),
+    mainMenuList: [],
     mainMenuActive: '',
     subMenuList: [],
-    subMenuActive: null
+    subMenuActive: null,
+    allRouter: []
   },
   getters: {},
   mutations: {
@@ -36,11 +37,18 @@ export default new Vuex.Store({
     setUserInfo(state, { payload }) {
       state.userInfo = payload
     },
-    setMainMenuList(state, { payload }) {
-      state.mainMenuList = payload
-    },
+    // setMainMenuList(state, { payload }) {
+    //   state.mainMenuList = payload
+    // },
     setMainMenuActive(state, { payload }) {
       state.mainMenuActive = payload
+    },
+    setAllRouter(state, { payload }) {
+      state.allRouter = payload
+    },
+    initMenu(state) {
+      state.mainMenuList = getMainMenuByRouter(state.allRouter)
+      console.log(state.mainMenuList)
     },
     setSubMenuList(state, { payload }) {
       let list = []

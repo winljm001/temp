@@ -9,7 +9,7 @@ const childrenMenu = {
       menuLevel: 2,
       menuName: '活动方案',
       menuScope: 'operate',
-      component: 'trade/menu1/menu1-1'
+      component: 'trade/menu1/menu1-1/Index'
     }
   ],
   menuCode: '10030000',
@@ -18,6 +18,6 @@ const childrenMenu = {
   menuLevel: 1,
   menuName: '交易',
   menuScope: 'operate',
-  component: 'main'
+  component: 'main/Index'
 }
 export default childrenMenu

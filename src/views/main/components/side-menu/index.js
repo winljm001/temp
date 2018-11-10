@@ -1,2 +1,2 @@
-import Index from './Index.vue'
-export default Index
+import sideMenu from './side-menu.vue'
+export default sideMenu

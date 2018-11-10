@@ -35,7 +35,7 @@ import CustomBreadCrumb from './components/custom-bread-crumb'
 import { mapState, mapActions, mapMutations } from 'vuex'
 // import { mapMutations, mapActions, mapState, mapGetters } from 'vuex'
 // import minLogo from '@/assets/images/logo-min.jpg'
-import router from '@/router'
+// import router from '@/router'
 import './style.less'
 export default {
   name: 'Main',
@@ -76,26 +76,25 @@ export default {
         params,
         query
       })
-    },
-    selectMainMenu(item) {
-      // this.setMainMenuActive({ payload: item })
     }
+    // selectMainMenu(item) {
+    //   // this.setMainMenuActive({ payload: item })
+    // }
   },
   watch: {
     // $route(newRoute) {
     //   this.setBreadCrumb(newRoute.matched)
     // }
-    mainMenuActive: {
-      handler: function(n) {
-        // this.setSubMenuList({ payload: n })
-      },
-      deep: true,
-      immediate: true
-    }
+    // mainMenuActive: {
+    //   handler: function(n) {
+    //     // this.setSubMenuList({ payload: n })
+    //   },
+    //   deep: true,
+    //   immediate: true
+    // }
   },
   mounted() {
-    console.log(router)
-    // this.initMain()
+    this.initMenu()
   }
 }
 </script>
