@@ -10,14 +10,16 @@
       :open-names="openedNames"
       @on-select="onSelect">
       <template v-for="item in menuList">
-        <side-menu-item 
-          v-if="showChildren(item)" 
-          :key="`menu-${item.name}`" 
-          :parent-item="item"/>
-        <menu-item 
-          v-else 
-          :name="item.name" 
-          :key="`menu-${item.name}`"><common-icon :type="item.icon || ''"/><span>{{ showTitle(item) }}{{ item.name }}</span></menu-item>
+        <template v-if="!item.meta.hideInMenu">
+          <side-menu-item 
+            v-if="showChildren(item)" 
+            :key="`menu-${item.name}`" 
+            :parent-item="item"/>
+          <menu-item 
+            v-else 
+            :name="item.name" 
+            :key="`menu-${item.name}`"><common-icon :type="item.icon || ''"/><span>{{ showTitle(item) }}</span></menu-item>
+        </template>
       </template>
     </Menu>
   </div>

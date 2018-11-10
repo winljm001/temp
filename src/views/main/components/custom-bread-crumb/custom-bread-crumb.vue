@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-bread-crumb">
+  <Card class="custom-bread-crumb">
     <Breadcrumb>
       <BreadcrumbItem 
         v-for="item in list" 
@@ -8,7 +8,7 @@
         {{ showTitle(item) }}
       </BreadcrumbItem>
     </Breadcrumb>
-  </div>
+  </Card>
 </template>
 <script>
 import { showTitle } from '@/utils/util'

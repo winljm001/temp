@@ -5,10 +5,14 @@ import modules from './modules'
 import {
   getAuthorization,
   getUserInfo,
-  setMainMenuList
-  // getMainMenuList
+  setMainMenuList,
+  getMainMenuList
 } from '../utils/storage'
-import { getMainMenuByRouter, getSubMenuByUpName } from '../utils/util'
+import {
+  getMainMenuByRouter,
+  getSubMenuByUpName,
+  getBreadCrumbList
+} from '../utils/util'
 // 主菜单模拟数据
 import mainMenus from '@/mock/localMenus/mainMenus'
 // 子菜单模拟数据
@@ -23,12 +27,11 @@ export default new Vuex.Store({
     authorization: getAuthorization(),
     userInfo: getUserInfo(),
     // 菜单相关
-    mainMenuList: [],
+    mainMenuList: getMainMenuList(),
     mainMenuActive: '',
     subMenuList: [],
-    // subMenuActive: '',
-    // subMenuOpenName: [],
-    allRouter: []
+    allRouter: [],
+    breadCrumbList: []
   },
   getters: {},
   mutations: {
@@ -38,9 +41,6 @@ export default new Vuex.Store({
     setUserInfo(state, { payload }) {
       state.userInfo = payload
     },
-    // setMainMenuList(state, { payload }) {
-    //   state.mainMenuList = payload
-    // },
     setMainMenuActive(state, { payload }) {
       state.mainMenuActive = payload
     },
@@ -57,12 +57,6 @@ export default new Vuex.Store({
         state.allRouter,
         state.mainMenuActive
       ).children
-      // let subMenuOpenName = []
-      // for (let i = 1; i < payload.matched.length; i++) {
-      //   subMenuOpenName.push(payload.matched[i].name)
-      // }
-      // state.subMenuOpenName = subMenuOpenName
-      // state.subMenuActive = payload.name
     },
     setSubMenuList(state, { payload }) {
       let list = []
@@ -77,6 +71,9 @@ export default new Vuex.Store({
     },
     setSubMenuActive(state, { payload }) {
       state.subMenuActive = payload
+    },
+    setBreadCrumb(state, route) {
+      state.breadCrumbList = getBreadCrumbList(route)
     }
   },
   actions: {

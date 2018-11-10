@@ -33,6 +33,7 @@ const childrenMenu = {
           menuLevel: 2,
           menuName: '活动方案',
           menuScope: 'operate',
+          hideInMenu: true,
           component: 'distribution/menu1/menu1-3/Index'
         }
       ],

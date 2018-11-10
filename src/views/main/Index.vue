@@ -18,8 +18,7 @@
           @on-select="selectSubMenu"/>
       </Sider>
       <Content class="cp-content">
-        {{ subMenuList }}
-        <CustomBreadCrumb/>
+        <CustomBreadCrumb :list="breadCrumbList"/>
         <!-- <keep-alive :include="cacheList">
           <router-view />
         </keep-alive> -->
@@ -34,9 +33,6 @@ import HeaderBar from './components/header-bar'
 import HeaderMain from './components/header-main'
 import CustomBreadCrumb from './components/custom-bread-crumb'
 import { mapState, mapActions, mapMutations } from 'vuex'
-// import { mapMutations, mapActions, mapState, mapGetters } from 'vuex'
-// import minLogo from '@/assets/images/logo-min.jpg'
-// import router from '@/router'
 import './style.less'
 export default {
   name: 'Main',
@@ -47,24 +43,19 @@ export default {
     CustomBreadCrumb
   },
   data() {
-    return {
-      // minLogo,
-      breadCrumb: []
-    }
+    return {}
   },
   computed: {
     ...mapState({
       userInfo: state => state.userInfo,
       mainMenuList: state => state.mainMenuList,
       mainMenuActive: state => state.mainMenuActive,
-      subMenuList: state => state.subMenuList
-      // subMenuActive: state => state.subMenuActive,
-      // subMenuOpenName: state => state.subMenuOpenName
-      // breadCrumb: state => state.breadCrumb
+      subMenuList: state => state.subMenuList,
+      breadCrumbList: state => state.breadCrumbList
     })
   },
   methods: {
-    ...mapMutations(['initMenu', 'setRouteStatus']),
+    ...mapMutations(['initMenu', 'setRouteStatus', 'setBreadCrumb']),
     ...mapActions('login', ['logout']),
     ...mapActions(['getMainMenu']),
     turnToPage(route) {
@@ -87,7 +78,6 @@ export default {
       })
     },
     selectSubMenu(item) {
-      console.log(item)
       this.$router.push({
         name: item
       })
@@ -96,19 +86,12 @@ export default {
   watch: {
     $route: {
       handler: function(val) {
-        console.log(val)
         this.setRouteStatus({ payload: val })
+        this.setBreadCrumb(val)
       },
       deep: true,
       immediate: true
     }
-    // mainMenuActive: {
-    //   handler: function(n) {
-    //     // this.setSubMenuList({ payload: n })
-    //   },
-    //   deep: true,
-    //   immediate: true
-    // }
   },
   mounted() {
     this.initMenu()

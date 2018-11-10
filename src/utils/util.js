@@ -25,12 +25,12 @@ export const lazyLoading = url => () => import(`@/views/${url}`)
 
 // 根据相应权限主菜单生成路由
 export const updateAllRouter = (mainMenus, subMenus) => {
-  // console.log(subMenus)
-  mainMenus
   let mainRouter = []
   for (let item of mainMenus) {
     if (subMenus[item.menuCode]) {
       mainRouter.push(initRouterNode(subMenus[item.menuCode]))
+    } else {
+      mainRouter.push(initRouterNode(item))
     }
   }
   return mainRouter
@@ -60,23 +60,27 @@ export const initRouterNode = data => {
  * @param {Array} routeMetched 当前路由metched
  * @returns {Array}
  */
-export const getBreadCrumbList = (routeMetched, homeRoute) => {
+export const getBreadCrumbList = route => {
+  let routeMetched = route.matched
   let res = routeMetched
     .filter(item => {
-      return item.meta === undefined || !item.meta.hide
+      return item.meta === undefined || !item.meta.hideInMenu
     })
     .map(item => {
+      let meta = { ...item.meta }
+      if (meta.title && typeof meta.title === 'function')
+        meta.title = meta.title(route)
       let obj = {
         icon: (item.meta && item.meta.icon) || '',
         name: item.name,
-        meta: item.meta
+        meta: meta
       }
       return obj
     })
   res = res.filter(item => {
     return !item.meta.hideInMenu
   })
-  return [Object.assign(homeRoute, { to: homeRoute.path }), ...res]
+  return res
 }
 
 /**

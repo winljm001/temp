@@ -7,7 +7,7 @@ const state = {
 }
 const getters = {}
 const actions = {
-  login({ commit, dispatch }, params) {
+  login({ commit, dispatch, rootState }, params) {
     commit('loading', { payload: true })
     login(params)
       .then(({ result }) => {
@@ -16,11 +16,12 @@ const actions = {
         setAuthorization(result)
         // 登录成功获取管理员信息
         dispatch('queryAdminInfo')
+        commit('initMenu', {}, { root: true })
         // 有重定向页面就跳转到重定向页面
         if (router.history.current.query.redirct) {
           router.push(router.history.current.query.redirct)
         } else {
-          router.push('/')
+          router.push({ name: rootState.mainMenuList[0].name })
         }
       })
       .catch(message => {

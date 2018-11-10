@@ -5,7 +5,8 @@ const mainMenus = [
   //   menuLevel: 1,
   //   menuName: '首页 ',
   //   menuUrl: '/home',
-  //   menuScope: 'operate'
+  //   menuScope: 'operate',
+  //   component: 'home/Index'
   // },
   {
     menuCode: '10020000',

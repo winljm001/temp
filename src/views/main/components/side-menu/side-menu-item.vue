@@ -5,14 +5,16 @@
         {{ parentItem.meta.title }}
       </template>
       <template v-for="item in parentItem.children">
-        <side-menu-item 
-          v-if="showChildren(item)" 
-          :key="`menu-${item.name}`" 
-          :parent-item="item"/>
-        <menu-item 
-          v-else 
-          :name="item.name" 
-          :key="`menu-${item.name}`"><span>{{ showTitle(item) }}{{ item.name }}</span></menu-item>
+        <template v-if="!item.meta.hideInMenu">
+          <side-menu-item 
+            v-if="showChildren(item)" 
+            :key="`menu-${item.name}`" 
+            :parent-item="item"/>
+          <menu-item 
+            v-else 
+            :name="item.name" 
+            :key="`menu-${item.name}`"><span>{{ showTitle(item) }}</span></menu-item>
+        </template>
       </template>
     </Submenu>
   </div>
