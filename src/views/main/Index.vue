@@ -87,6 +87,7 @@ export default {
       })
     },
     selectSubMenu(item) {
+      console.log(item)
       this.$router.push({
         name: item
       })
