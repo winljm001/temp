@@ -76,10 +76,11 @@ export default {
         params,
         query
       })
+    },
+    selectMainMenu(item) {
+      console.log(item)
+      // this.setMainMenuActive({ payload: item })
     }
-    // selectMainMenu(item) {
-    //   // this.setMainMenuActive({ payload: item })
-    // }
   },
   watch: {
     // $route(newRoute) {

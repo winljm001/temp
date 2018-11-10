@@ -48,7 +48,6 @@ export default new Vuex.Store({
     },
     initMenu(state) {
       state.mainMenuList = getMainMenuByRouter(state.allRouter)
-      console.log(state.mainMenuList)
     },
     setSubMenuList(state, { payload }) {
       let list = []
