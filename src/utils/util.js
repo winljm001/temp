@@ -5,7 +5,7 @@ export const getCookie = function(name) {
   if ((arr = document.cookie.match(reg))) return unescape(arr[2])
   else return null
 }
-export const showTitle = item => (item.meta && item.meta.title) || item.menuName
+export const showTitle = item => (item.meta && item.meta.title) || item.name
 export const routeEqual = (route1, route2) => {
   const params1 = route1.params || {}
   const params2 = route2.params || {}
@@ -89,6 +89,19 @@ export const getMainMenuByRouter = list => {
     let tempRoute = JSON.parse(JSON.stringify(item))
     delete tempRoute.children
     res.push(tempRoute)
+  })
+  return res
+}
+/**
+ * @param {Array} list 通过父级name获取子菜单
+ * @returns {object}
+ */
+export const getSubMenuByUpName = (list, name) => {
+  let res = {}
+  forEach(list, item => {
+    if (item.name == name) {
+      res = JSON.parse(JSON.stringify(item))
+    }
   })
   return res
 }

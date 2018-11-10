@@ -1,0 +1,23 @@
+const childrenMenu = {
+  children: [
+    {
+      upMenuCode: '10060000',
+      children: [],
+      menuIcon: 'paper-clip',
+      menuUrl: '/account_center/menu1',
+      menuCode: '10060100',
+      menuLevel: 2,
+      menuName: 'menu1',
+      menuScope: 'operate',
+      component: 'account-center/menu1/menu1-1/Index'
+    }
+  ],
+  menuCode: '10060000',
+  menuIcon: 'paper-clip',
+  menuUrl: '/account_center',
+  menuLevel: 1,
+  menuName: '用户中心',
+  menuScope: 'operate',
+  component: 'main/Index'
+}
+export default childrenMenu

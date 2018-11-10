@@ -4,18 +4,20 @@
       width="auto"
       accordion
       theme="dark"
+      ref="menu"
       class="cp-side-menu"
-      active-name="1-2"
-      :open-names="['1']">
+      :active-name="menuActiveName"
+      :open-names="openedNames"
+      @on-select="onSelect">
       <template v-for="item in menuList">
         <side-menu-item 
           v-if="showChildren(item)" 
-          :key="`menu-${item.menuCode}`" 
+          :key="`menu-${item.name}`" 
           :parent-item="item"/>
         <menu-item 
           v-else 
-          :name="item.menuCode" 
-          :key="`menu-${item.menuCode}`"><common-icon :type="item.icon || ''"/><span>{{ showTitle(item) }}</span></menu-item>
+          :name="item.name" 
+          :key="`menu-${item.name}`"><common-icon :type="item.icon || ''"/><span>{{ showTitle(item) }}{{ item.name }}</span></menu-item>
       </template>
     </Menu>
   </div>
@@ -31,41 +33,44 @@ export default {
     menuList: {
       type: Array,
       default: () => []
-    },
-    activeName: {
-      type: String,
-      default: ''
-    },
-    openNames: {
-      type: Array,
-      default: () => []
     }
   },
   data() {
     return {
-      openedNames: []
+      openedNames: [],
+      menuActiveName: ''
     }
   },
   methods: {
-    handleSelect(name) {
+    onSelect(name) {
       this.$emit('on-select', name)
+    },
+    setMenuStatus(newRoute) {
+      this.menuActiveName = newRoute.name
+      let subMenuOpenName = []
+      for (let i = 1; i < newRoute.matched.length; i++) {
+        if (newRoute.matched[i].name !== name) {
+          subMenuOpenName.push(newRoute.matched[i].name)
+        }
+      }
+      this.openedNames = subMenuOpenName
     }
   },
-  computed: {
-    // textColor() {
-    //   return this.theme === 'dark' ? '#fff' : '#495060'
-    // }
-  },
+  computed: {},
   watch: {
-    // openedNames() {
-    //   this.$nextTick(() => {
-    //     this.$refs.menu.updateOpened()
-    //   })
-    // }
+    $route: {
+      handler: function(val) {
+        this.$nextTick(() => {
+          this.$refs.menu.updateOpened()
+          this.$refs.menu.updateActiveName()
+        })
+        this.setMenuStatus(val)
+      },
+      deep: true,
+      immediate: true
+    }
   },
-  mounted() {
-    // console.log(this.menuList)
-  }
+  mounted() {}
 }
 </script>
 <style lang="less">

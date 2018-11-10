@@ -1,18 +1,18 @@
 <template>
   <div class="side-menu-item-wrapper">
-    <Submenu :name="parentItem.menuCode">
+    <Submenu :name="parentItem.name">
       <template slot="title">
-        {{ parentItem.menuName }}
+        {{ parentItem.meta.title }}
       </template>
       <template v-for="item in parentItem.children">
         <side-menu-item 
           v-if="showChildren(item)" 
-          :key="`menu-${item.menuCode}`" 
+          :key="`menu-${item.name}`" 
           :parent-item="item"/>
         <menu-item 
           v-else 
-          :name="item.menuCode" 
-          :key="`menu-${item.menuCode}`"><span>{{ showTitle(item) }}</span></menu-item>
+          :name="item.name" 
+          :key="`menu-${item.name}`"><span>{{ showTitle(item) }}{{ item.name }}</span></menu-item>
       </template>
     </Submenu>
   </div>
@@ -39,21 +39,10 @@ export default {
       this.$emit('on-select', name)
     }
   },
-  computed: {
-    // textColor() {
-    //   return this.theme === 'dark' ? '#fff' : '#495060'
-    // }
-  },
-  watch: {
-    // openedNames() {
-    //   this.$nextTick(() => {
-    //     this.$refs.menu.updateOpened()
-    //   })
-    // }
-  },
+  computed: {},
+  watch: {},
   mounted() {}
 }
 </script>
 <style lang="less">
-@import './side-menu.less';
 </style>

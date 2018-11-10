@@ -8,7 +8,7 @@ import {
   setMainMenuList
   // getMainMenuList
 } from '../utils/storage'
-import { getMainMenuByRouter } from '../utils/util'
+import { getMainMenuByRouter, getSubMenuByUpName } from '../utils/util'
 // 主菜单模拟数据
 import mainMenus from '@/mock/localMenus/mainMenus'
 // 子菜单模拟数据
@@ -26,7 +26,8 @@ export default new Vuex.Store({
     mainMenuList: [],
     mainMenuActive: '',
     subMenuList: [],
-    subMenuActive: null,
+    // subMenuActive: '',
+    // subMenuOpenName: [],
     allRouter: []
   },
   getters: {},
@@ -48,6 +49,20 @@ export default new Vuex.Store({
     },
     initMenu(state) {
       state.mainMenuList = getMainMenuByRouter(state.allRouter)
+    },
+    setRouteStatus(state, { payload }) {
+      state.mainMenuList = getMainMenuByRouter(state.allRouter)
+      state.mainMenuActive = payload.matched[0].name
+      state.subMenuList = getSubMenuByUpName(
+        state.allRouter,
+        state.mainMenuActive
+      ).children
+      // let subMenuOpenName = []
+      // for (let i = 1; i < payload.matched.length; i++) {
+      //   subMenuOpenName.push(payload.matched[i].name)
+      // }
+      // state.subMenuOpenName = subMenuOpenName
+      // state.subMenuActive = payload.name
     },
     setSubMenuList(state, { payload }) {
       let list = []

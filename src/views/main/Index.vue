@@ -14,10 +14,11 @@
         class="cp-sider"
       >
         <side-menu 
-          :menu-list="subMenuList" 
-          :active-name="subMenuActive"/>
+          :menu-list="subMenuList"
+          @on-select="selectSubMenu"/>
       </Sider>
       <Content class="cp-content">
+        {{ subMenuList }}
         <CustomBreadCrumb/>
         <!-- <keep-alive :include="cacheList">
           <router-view />
@@ -48,6 +49,7 @@ export default {
   data() {
     return {
       // minLogo,
+      breadCrumb: []
     }
   },
   computed: {
@@ -55,12 +57,14 @@ export default {
       userInfo: state => state.userInfo,
       mainMenuList: state => state.mainMenuList,
       mainMenuActive: state => state.mainMenuActive,
-      subMenuList: state => state.subMenuList,
-      subMenuActive: state => state.subMenuActive
+      subMenuList: state => state.subMenuList
+      // subMenuActive: state => state.subMenuActive,
+      // subMenuOpenName: state => state.subMenuOpenName
+      // breadCrumb: state => state.breadCrumb
     })
   },
   methods: {
-    ...mapMutations(['initMenu']),
+    ...mapMutations(['initMenu', 'setRouteStatus']),
     ...mapActions('login', ['logout']),
     ...mapActions(['getMainMenu']),
     turnToPage(route) {
@@ -78,14 +82,25 @@ export default {
       })
     },
     selectMainMenu(item) {
-      console.log(item)
-      // this.setMainMenuActive({ payload: item })
+      this.$router.push({
+        name: item
+      })
+    },
+    selectSubMenu(item) {
+      this.$router.push({
+        name: item
+      })
     }
   },
   watch: {
-    // $route(newRoute) {
-    //   this.setBreadCrumb(newRoute.matched)
-    // }
+    $route: {
+      handler: function(val) {
+        console.log(val)
+        this.setRouteStatus({ payload: val })
+      },
+      deep: true,
+      immediate: true
+    }
     // mainMenuActive: {
     //   handler: function(n) {
     //     // this.setSubMenuList({ payload: n })
