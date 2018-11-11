@@ -91,7 +91,7 @@ const childrenMenu = {
     }
   ],
   menuCode: '10050000',
-  menuIcon: 'file',
+  menuIcon: 'top_ps',
   menuLevel: 1,
   menuName: '配送',
   menuUrl: '/distribution',

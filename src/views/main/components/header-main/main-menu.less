@@ -14,11 +14,30 @@
             padding: 0 20px 0 10px;
             font-size: 22px;
             color: #fff;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            .icon{
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+            }            
+            .icon-active{
+                display: none;
+                width: 40px;
+                height: 40px;
+            }            
             &:hover{
                 background-color: rgba(153,182,209,0.1);
             }
             &.ivu-menu-item-active{
                 background-color: #f08300;
+                .icon{
+                    display: none;
+                }            
+                .icon-active{
+                    display: inline-block;
+                } 
             }
         }
     }

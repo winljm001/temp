@@ -2,6 +2,8 @@
  * 如需添加路由去对应下面文件中去添加
  */
 
+// 首页
+import homeMenu from './subMenus/homeMenu'
 // 合作伙伴
 import partnerMenu from './subMenus/partnerMenu'
 // 交易
@@ -13,6 +15,7 @@ import distributionMenu from './subMenus/distributionMenu'
 // 账户中心
 import accountCenterMenu from './subMenus/accountCenterMenu'
 const subMenus = {
+  '10010000': homeMenu,
   '10020000': partnerMenu,
   '10030000': tradeMenu,
   '10040000': rentCarMenu,

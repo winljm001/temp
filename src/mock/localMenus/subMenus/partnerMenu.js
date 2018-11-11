@@ -13,7 +13,7 @@ const childrenMenu = {
     }
   ],
   menuCode: '10020000',
-  menuIcon: 'paper-clip',
+  menuIcon: 'top_partner',
   menuUrl: '/partner',
   menuLevel: 1,
   menuName: '合作伙伴',

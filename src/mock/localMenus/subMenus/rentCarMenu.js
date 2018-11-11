@@ -13,7 +13,7 @@ const childrenMenu = {
     }
   ],
   menuCode: '10040000',
-  menuIcon: 'paper-clip',
+  menuIcon: 'top_zc',
   menuUrl: '/rent_car',
   menuLevel: 1,
   menuName: '租车',

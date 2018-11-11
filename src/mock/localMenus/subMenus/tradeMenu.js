@@ -13,7 +13,7 @@ const childrenMenu = {
     }
   ],
   menuCode: '10030000',
-  menuIcon: 'paper-clip',
+  menuIcon: 'top_jy',
   menuUrl: '/trade',
   menuLevel: 1,
   menuName: '交易',

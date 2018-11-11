@@ -13,7 +13,7 @@ const childrenMenu = {
     }
   ],
   menuCode: '10060000',
-  menuIcon: 'paper-clip',
+  menuIcon: 'top_account',
   menuUrl: '/account_center',
   menuLevel: 1,
   menuName: '用户中心',

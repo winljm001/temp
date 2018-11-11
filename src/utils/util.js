@@ -22,6 +22,9 @@ export const hasChild = item => {
 }
 // 动态加载组件
 export const lazyLoading = url => () => import(`@/views/${url}`)
+export const lazyImgLoading = url => {
+  return require(`@/assets/${url}`)
+}
 
 // 根据相应权限主菜单生成路由
 export const updateAllRouter = (mainMenus, subMenus) => {
