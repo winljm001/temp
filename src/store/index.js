@@ -1,5 +1,5 @@
 import Vue from 'vue'
-const $vue = new Vue()
+// const $vue = new Vue()
 import Vuex from 'vuex'
 import modules from './modules'
 import {
@@ -14,11 +14,11 @@ import {
   getBreadCrumbList
 } from '../utils/util'
 // 主菜单模拟数据
-import mainMenus from '@/mock/localMenus/mainMenus'
+// import mainMenus from '@/mock/localMenus/mainMenus'
 // 子菜单模拟数据
 import subMenus from '@/mock/localMenus/subMenusMap'
-import config from '@/config'
-import { queryMainMenu } from '../services/system'
+// import config from '@/config'
+// import { queryMainMenu } from '../services/system'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -52,6 +52,7 @@ export default new Vuex.Store({
     },
     setRouteStatus(state, { payload }) {
       state.mainMenuList = getMainMenuByRouter(state.allRouter)
+      setMainMenuList(state.mainMenuList)
       state.mainMenuActive = payload.matched[0].name
       state.subMenuList = getSubMenuByUpName(
         state.allRouter,
@@ -78,23 +79,23 @@ export default new Vuex.Store({
   },
   actions: {
     // 获取主菜单
-    getMainMenu({ commit }) {
-      if (config.isUselocalMenus) {
-        commit('setMainMenuList', { payload: mainMenus })
-        commit('setMainMenuActive', { payload: mainMenus[0].menuCode })
-        setMainMenuList(mainMenus)
-      } else {
-        queryMainMenu()
-          .then(({ results }) => {
-            commit('setMainMenuList', { payload: results })
-            commit('setMainMenuActive', { payload: mainMenus[0].menuCode })
-            setMainMenuList(results)
-          })
-          .catch(({ message }) => {
-            $vue.$Message.error(message)
-          })
-      }
-    }
+    // getMainMenu({ commit }) {
+    //   if (config.isUselocalMenus) {
+    //     commit('setMainMenuList', { payload: mainMenus })
+    //     commit('setMainMenuActive', { payload: mainMenus[0].menuCode })
+    //     setMainMenuList(mainMenus)
+    //   } else {
+    //     queryMainMenu()
+    //       .then(({ results }) => {
+    //         commit('setMainMenuList', { payload: results })
+    //         commit('setMainMenuActive', { payload: mainMenus[0].menuCode })
+    //         setMainMenuList(results)
+    //       })
+    //       .catch(({ message }) => {
+    //         $vue.$Message.error(message)
+    //       })
+    //   }
+    // }
   },
   plugins: [],
   strict: process.env.NODE_ENV !== 'production'

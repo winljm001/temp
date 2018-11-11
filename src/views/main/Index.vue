@@ -57,7 +57,6 @@ export default {
   methods: {
     ...mapMutations(['initMenu', 'setRouteStatus', 'setBreadCrumb']),
     ...mapActions('login', ['logout']),
-    ...mapActions(['getMainMenu']),
     turnToPage(route) {
       let { name, params, query } = {}
       if (typeof route === 'string') name = route
